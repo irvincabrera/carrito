@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
+import NavBar from "./NavBar";
+import Contenido from "./Contenido";
 
 export class Principal extends Component {
     render() {
         return (
-            <nav className="navbar navbar-dark bg-primary">
-                <a className="navbar-brand" href="#">Navbar</a>
-            </nav>
+            <div>
+                <NavBar/>
+                <Contenido/>
+            </div>
         )
     }
 }
