@@ -2,9 +2,11 @@
   "name": "carrito",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://irvincabrera.github.io/carrito/",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
+    "gh-pages": "^2.1.1",
     "ramda": "^0.26.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -15,6 +17,8 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
