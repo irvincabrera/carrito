@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Card from "./Card";
+import {addInitState, addToCart} from "../actions";
+import {connect} from "react-redux";
+
+const style1 = { height: '35.77px' };
+const style2 = { fontSize: '10px', color: 'rgb(234, 34, 35)', fontWeight: 'bold', height: '22px'};
 
 export class Contenido extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            articulos: []
-        }
-    }
 
     componentDidMount() {
         axios.get('https://qa.commerceonthecloud.com/wcs/resources/store/10151/productview/byCategory/15504').then(res => {
@@ -849,26 +846,98 @@ export class Contenido extends Component {
             };
             return data;
         }).then((data) => {
-            this.setState({articulos: data.CatalogEntryView});
+            this.setState({items: data.CatalogEntryView});
+            this.agregarDatosInicio(data);
         });
     }
 
+    añadirCompra = (id) => {
+        this.props.addToCart(id);
+    };
+
+    agregarDatosInicio = (data) => {
+        this.props.addInitState(data);
+    };
+
     render() {
-        let articulosList = this.state.articulos.map(articulo => {
-            return (
-                <Card item={articulo}/>
-            )
-        });
+        let itemList = [];
+        if(this.state != null) {
+            itemList = this.state.items.map(item => {
+                return (
+                    <div className="col-12 col-sm-6 col-lg-3 col-xl-3 product-card--container" key={item.uniqueID}>
+                        <div className="product-card pt-1">
+                            <div className="row">
+                                <div className="col-6 col-sm-12">
+                                    <div className="image-container">
+                                        <img src={item.thumbnail} alt="Neceser Rose Gold Mimosa-2500001312181P" className="imgWidthProduct"></img>
+                                    </div>
+                                </div>
+                                <div className="col-6 col-sm-12">
+                                    <div className="product-card--detailsContainer">
+                                        <h2 className="product-card--name">{item.name}</h2>
+                                        <div style={style1}></div>
+                                        {item.Price ? (
+                                            <div>
+                                                <p className="product-card--listPrice"><span
+                                                    className="helvetica">$ {item.Price[0].priceValue}</span></p>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <p className="product-card--offerPrice"><span className="helvetica">No Disponible por el momento</span>
+                                                </p>
+                                            </div>
+                                        )}
+                                        <div style={style2}></div>
+                                        <div className="product-card--footer col-12">
+                                            <div className="row">
+                                                <div className="col-6 col-sm-12">
+                                                    {item.Price ? (
+                                                        <button id="2500001312181P" className="buttonGenericoRojo"
+                                                                onClick={() => {
+                                                                    this.añadirCompra(item.uniqueID)
+                                                                }}>
+                                                            <span>Comprar</span>
+                                                        </button>
+                                                    ) : (
+                                                        <button id="2500001312181P" className="buttonGenericoRojo"
+                                                                disabled={true}>
+                                                            <span>Comprar</span>
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            });
+        }
 
         return (
-            <div>
+            <div className="category--container">
                 <h2 className="center">Artículos de herramienta</h2>
-                <div className="row">
-                    {articulosList}
+                <div className="row rowProductsContainer">
+                    {itemList}
                 </div>
             </div>
         )
     }
 }
 
-export default Contenido;
+const mapStateToProps = (state)=> {
+    return {
+        items: state.items
+    }
+};
+
+const mapDispatchToProps = (dispatch)=> {
+    return{
+        addToCart: (id)=>{dispatch(addToCart(id))},
+        addInitState: (data)=>{dispatch(addInitState(data))}
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contenido);
