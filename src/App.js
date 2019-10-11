@@ -11,8 +11,8 @@ function App() {
             <div className="App">
                 <NavBar/>
                 <Switch>
-                    <Route exact path="/" component={Contenido}/>
-                    <Route path="/cart" component={Carrito}/>
+                    <Route exact path="/carrito/" component={Contenido}/>
+                    <Route path="/carrito/cart" component={Carrito}/>
                 </Switch>
             </div>
         </BrowserRouter>

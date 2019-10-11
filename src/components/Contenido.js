@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import {addInitState, addToCart} from "../actions";
 import {connect} from "react-redux";
@@ -9,7 +9,6 @@ const style2 = { fontSize: '10px', color: 'rgb(234, 34, 35)', fontWeight: 'bold'
 export class Contenido extends Component {
 
     componentDidMount() {
-
         axios.get('https://qa.commerceonthecloud.com/wcs/resources/store/10151/productview/byCategory/15504').then(res => {
             const data = {
                 "recordSetTotal": "10",
@@ -760,13 +759,13 @@ export class Contenido extends Component {
 
     sortAscending = () => {
         const { articulos } = this.state;
-        articulos.sort((a, b) => a - b)
+        articulos.sort((a, b) => a - b);
         this.setState({ articulos })
     }
 
     sortDescending = () => {
         const { articulos } = this.state;
-        articulos.sort((a, b) => a - b).reverse()
+        articulos.sort((a, b) => a - b).reverse();
         this.setState({ articulos })
     }
 

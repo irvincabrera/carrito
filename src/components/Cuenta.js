@@ -20,8 +20,6 @@ export class Cuenta extends Component {
     };
 
     render() {
-        console.log(this.props.total);
-
         const envio = this.props.total < 1500 ? (
             <label>
                 <input type="checkbox" ref="shipping" onChange={this.handleChecked}/>

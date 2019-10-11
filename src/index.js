@@ -6,8 +6,9 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import articulos from "./reducers/articulos";
+
 const store = createStore(articulos);
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 
 serviceWorker.unregister();

@@ -2,7 +2,7 @@
   "name": "carrito",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://irvincabrera.github.io/carrito",
+  "homepage": "https://irvincabrera.github.io/carrito/",
   "dependencies": {
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",

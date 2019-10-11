@@ -34,8 +34,8 @@ export class Carrito extends Component {
                                 <b>Cantidad: {item.cantidad}</b>
                             </p>
                             <div className="add-remove">
-                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.sumarCantidad(item.uniqueID)}}>arrow_drop_up</i></Link>
-                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.restarCantidad(item.uniqueID)}}>arrow_drop_down</i></Link>
+                                <Link to="/carrito/cart"><i className="material-icons" onClick={()=>{this.sumarCantidad(item.uniqueID)}}>arrow_drop_up</i></Link>
+                                <Link to="/carrito/cart"><i className="material-icons" onClick={()=>{this.restarCantidad(item.uniqueID)}}>arrow_drop_down</i></Link>
                             </div>
                             <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.removerArticulo(item.uniqueID)}}>Elimimar</button>
                         </div>

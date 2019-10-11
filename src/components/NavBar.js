@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 export class NavBar extends Component{
+
     render() {
         return (
             <nav className="navbar navbar-dark bg-primary">
                 <div className="container">
-                    <Link to="/"><h5>Ventas</h5></Link>
+                    <Link to="/carrito/"><h5>Ventas</h5></Link>
                     <ul className="right">
-                        <li><Link to="/cart"><i className="material-icons">shopping_cart</i></Link></li>
-                        <li><h5>0</h5></li>
+                        <li><Link to="/carrito/cart"><i className="material-icons">shopping_cart</i></Link></li>
+                        {this.props.totalElementos > 0 ? (
+                            <li><h5>{this.props.totalElementos}</h5></li>
+                        ) : (
+                            <li><h5>0</h5></li>
+                        )}
                     </ul>
                 </div>
             </nav>
@@ -17,4 +23,10 @@ export class NavBar extends Component{
     }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => {
+    return{
+        totalElementos: state.totalElementos
+    }
+};
+
+export default connect(mapStateToProps)(NavBar);

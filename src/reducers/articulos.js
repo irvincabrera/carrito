@@ -12,7 +12,8 @@ let initState = {
     items: [],
     size: 0,
     addItems: [],
-    total: 0
+    total: 0,
+    totalElementos: 0
 };
 
 const articulos = (state = initState, action) => {
@@ -24,11 +25,13 @@ const articulos = (state = initState, action) => {
         case ADD_TO_CART:
             let addItem = state.items.find(item => item.uniqueID === action.id);
             let existed_item = state.addItems.find(item => item.uniqueID === action.id);
+            let totalElementos = state.totalElementos + 1;
             if (existed_item) {
                 addItem.cantidad += 1;
                 return {
                     ...state,
-                    total: state.total + parseInt(addItem.Price[0].priceValue, 10)
+                    total: state.total + parseInt(addItem.Price[0].priceValue, 10),
+                    totalElementos: totalElementos
                 }
             } else {
                 addItem.cantidad = 1;
@@ -36,55 +39,63 @@ const articulos = (state = initState, action) => {
                 return {
                     ...state,
                     addItems: [...state.addItems, addItem],
-                    total : newTotal
+                    total : newTotal,
+                    totalElementos: totalElementos
                 }
             }
         case ADD_QUANTITY:
             let addQuantity = state.items.find(item => item.uniqueID === action.id);
             addQuantity.cantidad += 1;
             let newTotal = state.total + parseInt(addQuantity.Price[0].priceValue, 10);
+            let totalElementosAdd = state.totalElementos + 1;
             return{
                 ...state,
-                total: newTotal
+                total: newTotal,
+                totalElementos: totalElementosAdd
             };
         case SUB_QUANTITY:
             let subQuantity = state.items.find(item => item.uniqueID === action.id);
+            let totalElementosSub = state.totalElementos - 1;
             if(subQuantity.cantidad === 1) {
                 let new_items = state.addItems.filter(item => item.uniqueID !== action.id);
                 let restarCantidad = state.total - parseInt(subQuantity.Price[0].priceValue, 10);
                 return {
                     ...state,
                     addItems: new_items,
-                    total: restarCantidad
+                    total: restarCantidad,
+                    totalElementos: totalElementosSub
                 }
             } else {
                 subQuantity.cantidad -= 1;
                 let restarCantidad = state.total - parseInt(subQuantity.Price[0].priceValue, 10);
                 return {
                     ...state,
-                    total: restarCantidad
+                    total: restarCantidad,
+                    totalElementos: totalElementosSub
                 }
             }
         case REMOVE_ITEM:
             let itemToRemove = state.addItems.find(item=> item.uniqueID === action.id);
             let new_items = state.addItems.filter(item=> item.uniqueID !== action.id);
             let totalEliminar = state.total - (parseInt(itemToRemove.Price[0].priceValue, 10) * itemToRemove.cantidad);
+            let totalElementosRemove = state.totalElementos - itemToRemove.cantidad;
             return{
                 ...state,
                 addItems: new_items,
-                total: totalEliminar
+                total: totalEliminar,
+                totalElementos: totalElementosRemove
             };
         case ADD_SHIPPING:
-            console.log(action);
+            const totalAdd = state.total + action.precioEnvio;
             return {
                 ...state,
-                total: state.total + action.precioEnvio
+                total: totalAdd
             };
         case SUB_SHIPPING:
-            console.log(action);
+            const totalSub = state.total - action.precioEnvio;
             return {
                 ...state,
-                total: state.total - action.precioEnvio
+                total: totalSub
             };
         default:
             return state;
