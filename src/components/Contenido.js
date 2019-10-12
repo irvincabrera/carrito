@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import {addInitState, addToCart} from "../actions";
+import {addInitState, addToCart, checkBD} from "../actions";
 import {connect} from "react-redux";
+import {Dropdown} from "react-bootstrap";
 
 const style1 = { height: '35.77px' };
 const style2 = { fontSize: '10px', color: 'rgb(234, 34, 35)', fontWeight: 'bold', height: '22px'};
 
 export class Contenido extends Component {
 
+    constructor(props) {
+        super(props);
+        this.checarBD();
+    }
+
     componentDidMount() {
+        this.checarBD();
         axios.get('https://qa.commerceonthecloud.com/wcs/resources/store/10151/productview/byCategory/15504').then(res => {
             const data = {
                 "recordSetTotal": "10",
@@ -757,17 +764,21 @@ export class Contenido extends Component {
         this.props.addInitState(data);
     };
 
+    checarBD = (data) => {
+        this.props.checkBD(data);
+    };
+
     sortAscending = () => {
-        const { articulos } = this.state;
-        articulos.sort((a, b) => a - b);
-        this.setState({ articulos })
-    }
+        const articulos = this.state.items;
+        articulos.sort((a, b) => a.name.localeCompare(b.name));
+        this.setState({ items: articulos })
+    };
 
     sortDescending = () => {
-        const { articulos } = this.state;
-        articulos.sort((a, b) => a - b).reverse();
-        this.setState({ articulos })
-    }
+        const articulos = this.state.items;
+        articulos.sort((a, b) => a.name.localeCompare(b.name)).reverse();
+        this.setState({ items: articulos })
+    };
 
     render() {
         let itemList = [];
@@ -829,8 +840,15 @@ export class Contenido extends Component {
         return (
             <div className="category--container">
                 <h2 className="center">Artículos de herramienta</h2>
-                <button onClick = { this.sortAscending }> asc </button>
-                <button onClick = { this.sortDescending }> desc </button>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        Ordenar Por
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={this.sortAscending} >A - Z</Dropdown.Item>
+                        <Dropdown.Item onClick={this.sortDescending}>Z -A</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <div className="row rowProductsContainer">
                     {itemList}
                 </div>
@@ -840,15 +858,18 @@ export class Contenido extends Component {
 }
 
 const mapStateToProps = (state)=> {
-    return {
-        items: state.items
+    if (state != null) {
+        return {
+            items: state.items
+        }
     }
 };
 
 const mapDispatchToProps = (dispatch)=> {
     return{
         addToCart: (id)=>{dispatch(addToCart(id))},
-        addInitState: (data)=>{dispatch(addInitState(data))}
+        addInitState: (data)=>{dispatch(addInitState(data))},
+        checkBD: ()=>{dispatch(checkBD())}
     }
 };
 

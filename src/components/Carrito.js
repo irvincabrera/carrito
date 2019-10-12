@@ -62,8 +62,10 @@ export class Carrito extends Component {
 }
 
 const mapStateToProps = (state)=>{
-    return{
-        items: state.addItems,
+    if(state != null) {
+        return {
+            items: state.addItems,
+        }
     }
 };
 

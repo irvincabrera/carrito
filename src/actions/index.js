@@ -5,6 +5,7 @@ export const SUB_SHIPPING = 'SUB_SHIPPING';
 export const ADD_QUANTITY = 'ADD_QUANTITY';
 export const ADD_INIT_STATE = 'ADD_INIT_STATE';
 export const ADD_SHIPPING = 'ADD_SHIPPING';
+export const CHECK_BD = 'CHECK_BD';
 
 export const addInitState = (data) => {
     return {
@@ -54,3 +55,9 @@ export const subShipping = (precioEnvio) => {
         precioEnvio
     }
 };
+
+export const checkBD = () => {
+    return {
+        type: CHECK_BD,
+    }
+}

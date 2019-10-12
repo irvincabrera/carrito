@@ -4,8 +4,13 @@ import {addShipping, subShipping} from "../actions";
 
 export class Cuenta extends Component {
 
+    constructor(props) {
+        super(props);
+        this.shipping= React.createRef();
+    }
+
     componentWillUnmount() {
-        if(this.refs.shipping.checked) {
+        if (this.shipping.checked) {
             this.props.substractShipping(150)
         }
     }
@@ -22,7 +27,7 @@ export class Cuenta extends Component {
     render() {
         const envio = this.props.total < 1500 ? (
             <label>
-                <input type="checkbox" ref="shipping" onChange={this.handleChecked}/>
+                <input type="checkbox" ref={this.shipping} onChange={this.handleChecked}/>
                 <span>Envio($150)</span>
             </label>
         ) : (
