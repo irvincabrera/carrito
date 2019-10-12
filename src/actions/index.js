@@ -1,3 +1,4 @@
+// Declaración de variables que se ocuparan como tipo
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SUB_QUANTITY = 'SUB_QUANTITY';
@@ -7,6 +8,7 @@ export const ADD_INIT_STATE = 'ADD_INIT_STATE';
 export const ADD_SHIPPING = 'ADD_SHIPPING';
 export const CHECK_BD = 'CHECK_BD';
 
+// llamado de todas las acciones que se ocuparan para el reducer
 export const addInitState = (data) => {
     return {
         type: ADD_INIT_STATE,

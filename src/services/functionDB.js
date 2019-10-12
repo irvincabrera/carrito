@@ -6,6 +6,7 @@ const onRequestError = (e) => {
 
 let checkBDAdd = [];
 
+// agregado del valor a la DB
 export const addDB = (valor) => {
     const request = DB();
     request.onerror = onRequestError;
@@ -35,6 +36,7 @@ export const addDB = (valor) => {
     }
 };
 
+// se llama a consultar los datos que tenga la DB
 export const getDB = () => {
     if (checkBDAdd.length === 0) {
         const request = DB();
@@ -68,6 +70,7 @@ export const getDB = () => {
     }
 };
 
+// funcion visualizacion del contenido de una tabla
 function getAll(tabla, e) {
     const db = e.target.result;
     const transaction = db.transaction(tabla, 'readonly');
@@ -76,6 +79,7 @@ function getAll(tabla, e) {
     return total;
 }
 
+// funcion agregado de contenido de una tabla
 function addTable(tabla, data, e) {
     const db = e.target.result;
     const transaction = db.transaction(tabla, 'readwrite');
@@ -83,6 +87,7 @@ function addTable(tabla, data, e) {
     store.put({ valor: data });
 }
 
+// funcion eliminacion de contenido de una tabla
 function deleteTable(tabla, e) {
     const db = e.target.result;
     const transaction = db.transaction(tabla, 'readwrite');

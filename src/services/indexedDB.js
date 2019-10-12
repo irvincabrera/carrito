@@ -1,5 +1,6 @@
 const dbVersion = 1;
 
+// creacion de la indexedDB si es que no se encuentra creada
 export default () => {
 
     const request = indexedDB.open("articulos", dbVersion);

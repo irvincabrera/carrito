@@ -15,6 +15,7 @@ export class Cuenta extends Component {
         }
     }
 
+    // Suma o resta de cantidad de envio
     handleChecked = (e) => {
         const precioEnvio = 150;
         if(e.target.checked) {
@@ -25,23 +26,15 @@ export class Cuenta extends Component {
     };
 
     render() {
-        const envio = this.props.total < 1500 ? (
-            <label>
-                <input type="checkbox" ref={this.shipping} onChange={this.handleChecked}/>
-                <span>Envio($150)</span>
-            </label>
-        ) : (
-            <label>
-                <h6><b>Envío Gratis</b></h6>
-            </label>
-        );
-
+        // visualizacion de la parte de cantidad a pagar
         return(
             <div className="container">
                 <div className="collection">
-                    <label>En una compra mayor a $1500 el envío es gratis.</label>
                     <li className="collection-item">
-                        {envio}
+                        <label>
+                            <input type="checkbox" ref={this.shipping} onChange={this.handleChecked}/>
+                            <span>Envio($150)</span>
+                        </label>
                     </li>
                     <li className="collection-item"><b>Total: ${this.props.total}</b></li>
                 </div>

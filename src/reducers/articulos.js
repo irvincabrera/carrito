@@ -10,6 +10,7 @@ import {
 } from "../actions";
 import {addDB, getDB} from "../services/functionDB";
 
+//  Variable que se ocupa para contener los items que se han recibido de la peticion y lo que se agreguen al carrito
 let initState = {
     items: [],
     size: 0,
@@ -20,9 +21,11 @@ let initState = {
 
 const articulos = (state = initState, action) => {
     switch (action.type) {
+        // llamado al indexedBD para corroborar que tenga algo
         case CHECK_BD:
             getDB();
             break;
+        // agregado inicial de los valores
         case ADD_INIT_STATE:
             const valores = getDB();
             if (valores != null && valores.length > 0) {
@@ -49,6 +52,7 @@ const articulos = (state = initState, action) => {
                 initState.size = action.data.recordSetTotal;
             }
             return {...state};
+        // agregado del item al carro al igual que al indexed
         case ADD_TO_CART:
             let addItem = state.items.find(item => item.uniqueID === action.id);
             let existed_item = state.addItems.find(item => item.uniqueID === action.id);
@@ -74,6 +78,7 @@ const articulos = (state = initState, action) => {
                 addDB(val);
                 return val;
             }
+        // sumatoria de la cantidad del item al carro al igual que al indexed
         case ADD_QUANTITY:
             let addQuantity = state.items.find(item => item.uniqueID === action.id);
             addQuantity.cantidad += 1;
@@ -85,7 +90,8 @@ const articulos = (state = initState, action) => {
                 totalElementos: totalElementosAdd
             };
             addDB(addValor);
-            return addValor
+            return addValor;
+        // resta de la cantidad del item al carro al igual que al indexed
         case SUB_QUANTITY:
             let subQuantity = state.items.find(item => item.uniqueID === action.id);
             let totalElementosSub = state.totalElementos - 1;
@@ -97,7 +103,7 @@ const articulos = (state = initState, action) => {
                     addItems: new_items,
                     total: restarCantidad,
                     totalElementos: totalElementosSub
-                }
+                };
                 addDB(subValor);
                 return subValor;
             } else {
@@ -107,10 +113,11 @@ const articulos = (state = initState, action) => {
                     ...state,
                     total: restarCantidad,
                     totalElementos: totalElementosSub
-                }
+                };
                 addDB(subValor);
                 return subValor;
             }
+        // eliminacion del item al carro al igual que al indexed
         case REMOVE_ITEM:
             let itemToRemove = state.addItems.find(item=> item.uniqueID === action.id);
             let new_items = state.addItems.filter(item=> item.uniqueID !== action.id);
@@ -124,12 +131,14 @@ const articulos = (state = initState, action) => {
             };
             addDB(removeItem);
             return removeItem;
+        // se agrega el valor del envio del total a pagar
         case ADD_SHIPPING:
             const totalAdd = state.total + action.precioEnvio;
             return {
                 ...state,
                 total: totalAdd
             };
+        // se quita el valor del envio del total a pagar
         case SUB_SHIPPING:
             const totalSub = state.total - action.precioEnvio;
             return {

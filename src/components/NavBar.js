@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 export class NavBar extends Component{
 
     render() {
+        // Navbar redireccionamiento
         return (
             <nav className="navbar navbar-dark bg-primary">
                 <div className="container">

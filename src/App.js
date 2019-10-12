@@ -5,6 +5,7 @@ import Contenido from "./components/Contenido";
 import Carrito from "./components/Carrito";
 import NavBar from "./components/NavBar";
 
+// Se llaman los componentes que funcionaran para el redireccionamiento
 function App() {
     return (
         <BrowserRouter>

@@ -14,6 +14,7 @@ export class Contenido extends Component {
         this.checarBD();
     }
 
+    // Petición al endpoint proporcionado
     componentDidMount() {
         this.checarBD();
         const url = 'https://qa.commerceonthecloud.com/wcs/resources/store/10151/productview/byCategory/15504';
@@ -762,30 +763,36 @@ export class Contenido extends Component {
         });
     }
 
+    // Agregar articulo
     añadirCompra = (id) => {
         this.props.addToCart(id);
     };
 
+    // Cargado de los datos dependiendo del JSON
     agregarDatosInicio = (data) => {
         this.props.addInitState(data);
     };
 
+    // Cargado de la indexedDB para comprobar si dejo articulos pendientes al cerrar el navegador
     checarBD = (data) => {
         this.props.checkBD(data);
     };
 
+    // Ordenamiento por nombre ascendente
     sortAscending = () => {
         const articulos = this.state.items;
         articulos.sort((a, b) => a.name.localeCompare(b.name));
         this.setState({ items: articulos })
     };
 
+    // Ordenamiento por nombre descendente
     sortDescending = () => {
         const articulos = this.state.items;
         articulos.sort((a, b) => a.name.localeCompare(b.name)).reverse();
         this.setState({ items: articulos })
     };
 
+    // Ordenamiento por precio ascendente
     sortPriceAsc = () => {
         const articulos = this.state.items;
         const sinPrecio = [];
@@ -804,6 +811,7 @@ export class Contenido extends Component {
         this.setState({ items: conPrecio })
     };
 
+    // Ordenamiento por precio descentente
     sortPriceDesc = () => {
         const articulos = this.state.items;
         const sinPrecio = [];
@@ -823,6 +831,7 @@ export class Contenido extends Component {
     };
 
     render() {
+        // Renderizado de los cards para ver los productos que se tienen
         let itemList = [];
         if(this.state != null) {
             itemList = this.state.items.map(item => {
@@ -880,6 +889,7 @@ export class Contenido extends Component {
         }
 
         return (
+            // Dropdown par el ordenamiento y el llamado de los cards
             <div className="category--container">
                 <h2 className="center">Artículos de herramienta</h2>
                 <Dropdown>

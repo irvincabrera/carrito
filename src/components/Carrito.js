@@ -6,19 +6,23 @@ import {connect} from "react-redux";
 
 export class Carrito extends Component {
 
+    // eliminiacion de articulo agregado
     removerArticulo = (id)=>{
         this.props.removeItem(id);
     };
 
+    // aumentar cantidad del articulo
     sumarCantidad = (id)=>{
         this.props.addQuantity(id);
     };
 
+    // restar cantidad del articulo
     restarCantidad = (id)=>{
         this.props.subtractQuantity(id);
     };
 
     render() {
+        // Creación de los items que se agregaron al carrito
         const articulosAgregados = this.props.items.length ? (
             this.props.items.map( item => {
                 return (
@@ -69,6 +73,7 @@ const mapStateToProps = (state)=>{
     }
 };
 
+// Llamado de las funciones para que se vean reflejados con los reducers
 const mapDispatchToProps = (dispatch)=>{
     return{
         removeItem: (id)=>{dispatch(removeItem(id))},
