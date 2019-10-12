@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/carrito/static/css/main.1b9bb5fe.chunk.css",
-    "main.js": "/carrito/static/js/main.91e13ad8.chunk.js",
-    "main.js.map": "/carrito/static/js/main.91e13ad8.chunk.js.map",
+    "main.css": "/carrito/static/css/main.df437a66.chunk.css",
+    "main.js": "/carrito/static/js/main.219350b5.chunk.js",
+    "main.js.map": "/carrito/static/js/main.219350b5.chunk.js.map",
     "runtime-main.js": "/carrito/static/js/runtime-main.a03c62c7.js",
     "runtime-main.js.map": "/carrito/static/js/runtime-main.a03c62c7.js.map",
-    "static/js/2.84e14493.chunk.js": "/carrito/static/js/2.84e14493.chunk.js",
-    "static/js/2.84e14493.chunk.js.map": "/carrito/static/js/2.84e14493.chunk.js.map",
+    "static/js/2.858221ca.chunk.js": "/carrito/static/js/2.858221ca.chunk.js",
+    "static/js/2.858221ca.chunk.js.map": "/carrito/static/js/2.858221ca.chunk.js.map",
     "index.html": "/carrito/index.html",
-    "precache-manifest.79c953de5acf7fe0ab469c278a360f3d.js": "/carrito/precache-manifest.79c953de5acf7fe0ab469c278a360f3d.js",
+    "precache-manifest.c6f0fb72ee7fba0d292425c70e6f1691.js": "/carrito/precache-manifest.c6f0fb72ee7fba0d292425c70e6f1691.js",
     "service-worker.js": "/carrito/service-worker.js",
-    "static/css/main.1b9bb5fe.chunk.css.map": "/carrito/static/css/main.1b9bb5fe.chunk.css.map"
+    "static/css/main.df437a66.chunk.css.map": "/carrito/static/css/main.df437a66.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.a03c62c7.js",
-    "static/js/2.84e14493.chunk.js",
-    "static/css/main.1b9bb5fe.chunk.css",
-    "static/js/main.91e13ad8.chunk.js"
+    "static/js/2.858221ca.chunk.js",
+    "static/css/main.df437a66.chunk.css",
+    "static/js/main.219350b5.chunk.js"
   ]
 }
