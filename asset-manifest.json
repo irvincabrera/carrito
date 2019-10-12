@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/carrito/static/css/main.df437a66.chunk.css",
-    "main.js": "/carrito/static/js/main.219350b5.chunk.js",
-    "main.js.map": "/carrito/static/js/main.219350b5.chunk.js.map",
+    "main.js": "/carrito/static/js/main.449daafe.chunk.js",
+    "main.js.map": "/carrito/static/js/main.449daafe.chunk.js.map",
     "runtime-main.js": "/carrito/static/js/runtime-main.a03c62c7.js",
     "runtime-main.js.map": "/carrito/static/js/runtime-main.a03c62c7.js.map",
     "static/js/2.858221ca.chunk.js": "/carrito/static/js/2.858221ca.chunk.js",
     "static/js/2.858221ca.chunk.js.map": "/carrito/static/js/2.858221ca.chunk.js.map",
     "index.html": "/carrito/index.html",
-    "precache-manifest.c6f0fb72ee7fba0d292425c70e6f1691.js": "/carrito/precache-manifest.c6f0fb72ee7fba0d292425c70e6f1691.js",
+    "precache-manifest.1d3a9757edd3110f9b1ca240412fb598.js": "/carrito/precache-manifest.1d3a9757edd3110f9b1ca240412fb598.js",
     "service-worker.js": "/carrito/service-worker.js",
     "static/css/main.df437a66.chunk.css.map": "/carrito/static/css/main.df437a66.chunk.css.map"
   },
@@ -16,6 +16,6 @@
     "static/js/runtime-main.a03c62c7.js",
     "static/js/2.858221ca.chunk.js",
     "static/css/main.df437a66.chunk.css",
-    "static/js/main.219350b5.chunk.js"
+    "static/js/main.449daafe.chunk.js"
   ]
 }
