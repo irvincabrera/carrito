@@ -780,6 +780,42 @@ export class Contenido extends Component {
         this.setState({ items: articulos })
     };
 
+    sortPriceAsc = () => {
+        const articulos = this.state.items;
+        const sinPrecio = [];
+        const conPrecio = [];
+        articulos.forEach(articulo => {
+            if (articulo.Price) {
+                conPrecio.push(articulo);
+            } else {
+                sinPrecio.push(articulo);
+            }
+        });
+        conPrecio.sort((a, b) => parseInt(a.Price[0].priceValue,10) - (parseInt(b.Price[0].priceValue,10)));
+        sinPrecio.forEach(artSin => {
+            conPrecio.push(artSin);
+        });
+        this.setState({ items: conPrecio })
+    };
+
+    sortPriceDesc = () => {
+        const articulos = this.state.items;
+        const sinPrecio = [];
+        const conPrecio = [];
+        articulos.forEach(articulo => {
+            if (articulo.Price) {
+                conPrecio.push(articulo);
+            } else {
+                sinPrecio.push(articulo);
+            }
+        });
+        conPrecio.sort((a, b) => parseInt(a.Price[0].priceValue,10) - (parseInt(b.Price[0].priceValue,10))).reverse();
+        sinPrecio.forEach(artSin => {
+            conPrecio.push(artSin);
+        });
+        this.setState({ items: conPrecio })
+    };
+
     render() {
         let itemList = [];
         if(this.state != null) {
@@ -847,6 +883,8 @@ export class Contenido extends Component {
                     <Dropdown.Menu>
                         <Dropdown.Item onClick={this.sortAscending} >A - Z</Dropdown.Item>
                         <Dropdown.Item onClick={this.sortDescending}>Z -A</Dropdown.Item>
+                        <Dropdown.Item onClick={this.sortPriceAsc}>Menor Precio</Dropdown.Item>
+                        <Dropdown.Item onClick={this.sortPriceDesc}>Mayor Precio</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <div className="row rowProductsContainer">
